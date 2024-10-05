@@ -5,7 +5,7 @@ services:
     container_name: mysql-ms
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mysql-ms
+      MYSQL_DATABASE: ms-cliente
     ports:
       - "3307:3306"
     volumes:
