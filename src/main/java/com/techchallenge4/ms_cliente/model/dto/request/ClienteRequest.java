@@ -1,6 +1,5 @@
 package com.techchallenge4.ms_cliente.model.dto.request;
 
-import com.techchallenge4.ms_cliente.model.Endereco;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
