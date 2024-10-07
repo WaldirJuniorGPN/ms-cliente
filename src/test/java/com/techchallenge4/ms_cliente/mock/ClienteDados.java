@@ -42,6 +42,7 @@ public interface ClienteDados {
 
     static ClienteResponse getClienteResponse() {
         var clienteResponse = new ClienteResponse();
+        clienteResponse.setId(ID);
         clienteResponse.setNome(NOME);
         clienteResponse.setEmail(EMAIL);
         clienteResponse.setTelefone(TELEFONE);
