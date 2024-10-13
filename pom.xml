@@ -127,10 +127,11 @@
 
     <build>
         <plugins>
+            <!-- Plugin Maven Surefire -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M8</version>
+                <version>3.5.1</version>
                 <configuration>
                     <includes>
                         <include>**/RunCucumberTest.*</include>
@@ -153,5 +154,47 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- Perfis do Maven -->
+    <profiles>
+        <!-- Perfil para rodar testes de unidade e integração -->
+        <profile>
+            <id>unit-integration-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>**/*Test.java</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/RunCucumberTest.*</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Perfil para rodar apenas testes BDD -->
+        <profile>
+            <id>bdd-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>**/RunCucumberTest.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

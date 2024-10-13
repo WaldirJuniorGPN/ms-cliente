@@ -73,9 +73,35 @@ A tabela de clientes será criada com os seguintes campos:
 - `telefone`: Número de telefone.
 - `endereco`: Endereço do cliente.
 
-## Testes
 
-Este microsserviço inclui testes unitários e de integração. Para executar os testes, utilize o seguinte comando:
+## Como Executar os Testes
+
+Este projeto possui dois perfis de testes: um para **testes unitários e de integração** e outro para **testes BDD (Behavior-Driven Development)**. Abaixo estão as instruções para executar ambos os tipos de testes utilizando Maven.
+
+### Executando Testes Unitários e de Integração
+
+Para executar os **testes unitários e de integração** do projeto, utilize o seguinte comando:
+
+```bash
+mvn test -Punit-integration-tests
+```
+
+Esse comando irá executar todos os testes localizados no pacote de testes, excluindo os testes BDD.
+
+### Executando Testes BDD
+
+Para rodar os **testes BDD**, que utilizam o Cucumber, utilize o seguinte comando:
+
+```bash
+mvn test -Pbdd-tests
+```
+
+Esse comando irá executar apenas os testes BDD, baseados no Cucumber, definidos no projeto.
+
+### Executando Todos os Testes
+
+Se desejar rodar **todos os testes** (unitários, de integração e BDD), simplesmente execute:
+
 ```bash
 mvn test
 ```
