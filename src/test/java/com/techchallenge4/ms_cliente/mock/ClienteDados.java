@@ -1,11 +1,11 @@
 package com.techchallenge4.ms_cliente.mock;
 
-import com.techchallenge4.ms_cliente.model.Cliente;
-import com.techchallenge4.ms_cliente.model.Endereco;
-import com.techchallenge4.ms_cliente.model.dto.request.ClienteRequest;
-import com.techchallenge4.ms_cliente.model.dto.request.EnderecoRequest;
-import com.techchallenge4.ms_cliente.model.dto.response.ClienteResponse;
-import com.techchallenge4.ms_cliente.model.dto.response.EnderecoResponse;
+import com.techchallenge4.ms_cliente.domain.model.cliente.Cliente;
+import com.techchallenge4.ms_cliente.domain.model.cliente.Endereco;
+import com.techchallenge4.ms_cliente.controller.dto.request.ClienteRequest;
+import com.techchallenge4.ms_cliente.controller.dto.request.EnderecoRequest;
+import com.techchallenge4.ms_cliente.controller.dto.response.ClienteResponse;
+import com.techchallenge4.ms_cliente.controller.dto.response.EnderecoResponse;
 
 public interface ClienteDados {
 

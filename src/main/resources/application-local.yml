@@ -9,7 +9,14 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
 logging:
   level:
     root: WARN
     org.springframework.web: INFO
+
+api:
+  security:
+    token:
+      expiration-hours: 2
+      secret: ${JWT_SECRET:12345678}

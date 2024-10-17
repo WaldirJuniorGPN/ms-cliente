@@ -9,7 +9,11 @@ Este projeto faz parte do **Tech Challenge** e tem como objetivo desenvolver um 
 - **Spring Data JPA**: Integração com banco de dados relacional para simplificar as operações CRUD.
 - **MySQL**: Banco de dados utilizado para persistência dos dados de clientes.
 - **Lombok**: Redução de código boilerplate com anotações para getters, setters e outras funcionalidades.
-- **Validation**: Biblioteca de validação de beans usando Hibernate Validator.
+- **Hibernate Validator**: Validação de beans.
+- **ModelMapper**: Mapeamento de objetos DTO para entidades e vice-versa.
+- **OpenAPI (Springdoc)**: Documentação e interface gráfica para explorar as APIs REST.
+- **H2 Database**: Banco de dados em memória utilizado para testes.
+- **JUnit 5 e Cucumber**: Frameworks para testes unitários e BDD.
 
 ## Funcionalidades
 
@@ -27,59 +31,83 @@ Este microsserviço será responsável por:
 - **Descrição**: Microsserviço responsável pela gestão de clientes no sistema.
 - **Banco de Dados**: MySQL, acessado via Spring Data JPA.
 
-## Dependências Principais
-
-- **Spring Web**: Criação de endpoints RESTful.
-- **Spring Data JPA**: Manipulação e persistência de dados em banco de dados.
-- **MySQL Driver**: Driver JDBC para MySQL.
-- **Lombok**: Facilita a criação de código boilerplate.
-- **Validation**: Implementação de validações de dados.
-
 ## Como Executar
 
-1. **Pré-requisitos**:
-   - JDK 17
-   - Maven
-   - Docker (se desejar rodar o MySQL em container)
+### Pré-requisitos:
 
-2. **Passos**:
-   - Clonar o repositório:
-     ```bash
-     git clone git@github.com:WaldirJuniorGPN/ms-cliente.git
-     ```
-   - Navegar até a pasta do projeto:
-     ```bash
-     cd ms-cliente
-     ```
-  
-   - Rodar o projeto:
-     ```bash
-     mvn spring-boot:run
-     ```
+- JDK 17
+- Maven
+- Docker (para rodar o MySQL em container, opcional)
 
-3. **Endpoints**:
-   - Listar todos os clientes: `GET /clientes`
-   - Buscar cliente por ID: `GET /clientes/{id}`
-   - Criar novo cliente: `POST /clientes`
-   - Atualizar cliente: `PUT /clientes/{id}`
-   - Deletar cliente: `DELETE /clientes/{id}`
+### Passos:
+
+1. Clonar o repositório:
+   ```bash
+   git clone git@github.com:WaldirJuniorGPN/ms-cliente.git
+   ```
+2. Navegar até a pasta do projeto:
+   ```bash
+   cd ms-cliente
+   ```
+3. Rodar o projeto:
+   ```bash
+   mvn spring-boot:run
+   ```
+
+### Endpoints
+
+- **Listar todos os clientes**: `GET /clientes`
+- **Buscar cliente por ID**: `GET /clientes/{id}`
+- **Criar novo cliente**: `POST /clientes`
+- **Atualizar cliente**: `PUT /clientes/{id}`
+- **Deletar cliente**: `DELETE /clientes/{id}`
 
 ## Estrutura de Banco de Dados
 
 A tabela de clientes será criada com os seguintes campos:
+
 - `id`: Identificador único do cliente.
 - `nome`: Nome completo do cliente.
 - `email`: Endereço de email.
 - `telefone`: Número de telefone.
 - `endereco`: Endereço do cliente.
 
-## Testes
+## Como Executar os Testes
 
-Este microsserviço inclui testes unitários e de integração. Para executar os testes, utilize o seguinte comando:
+Este projeto possui diferentes perfis de testes configurados no Maven. Você pode executar testes unitários, de integração e de BDD (Behavior-Driven Development) com os seguintes comandos:
+
+### Executando Testes Unitários e de Integração
+
+```bash
+mvn test -Punit-integration-tests
+```
+
+Esse comando executa os testes unitários e de integração.
+
+### Executando Testes BDD
+
+```bash
+mvn test -Psystem-test
+```
+
+Esse comando executa os testes BDD usando o Cucumber.
+
+### Executando Todos os Testes
+
 ```bash
 mvn test
+```
+
+## Documentação da API
+
+A documentação da API está disponível via **OpenAPI** (Springdoc). Após rodar o projeto, você pode acessá-la em:
+
+```
+http://localhost:8080/swagger-ui.html
 ```
 
 ## Contribuições
 
 Sinta-se à vontade para abrir issues ou pull requests com sugestões de melhorias.
+
+---

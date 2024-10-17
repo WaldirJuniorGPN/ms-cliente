@@ -1,8 +1,9 @@
 package com.techchallenge4.ms_cliente.controller;
 
-import com.techchallenge4.ms_cliente.model.dto.request.ClienteRequest;
-import com.techchallenge4.ms_cliente.model.dto.response.ClienteResponse;
-import com.techchallenge4.ms_cliente.service.ClienteService;
+import com.techchallenge4.ms_cliente.controller.dto.request.ClienteRequest;
+import com.techchallenge4.ms_cliente.controller.dto.response.ClienteResponse;
+import com.techchallenge4.ms_cliente.domain.service.cliente.ClienteService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/clientes")
+@SecurityRequirement(name = "bearerToken")
 @RequiredArgsConstructor
 public class ClienteController {
 

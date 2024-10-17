@@ -1,10 +1,11 @@
 package com.techchallenge4.ms_cliente.service.impl;
 
-import com.techchallenge4.ms_cliente.adapter.ClienteAdapter;
-import com.techchallenge4.ms_cliente.model.Cliente;
-import com.techchallenge4.ms_cliente.model.dto.request.ClienteRequest;
-import com.techchallenge4.ms_cliente.model.dto.response.ClienteResponse;
-import com.techchallenge4.ms_cliente.repository.ClienteRepository;
+import com.techchallenge4.ms_cliente.domain.adapter.ClienteAdapter;
+import com.techchallenge4.ms_cliente.domain.model.cliente.Cliente;
+import com.techchallenge4.ms_cliente.controller.dto.request.ClienteRequest;
+import com.techchallenge4.ms_cliente.controller.dto.response.ClienteResponse;
+import com.techchallenge4.ms_cliente.infra.repository.ClienteRepository;
+import com.techchallenge4.ms_cliente.domain.service.cliente.impl.ClienteServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
