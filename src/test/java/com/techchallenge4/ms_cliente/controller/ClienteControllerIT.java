@@ -4,35 +4,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techchallenge4.ms_cliente.controller.dto.request.ClienteRequest;
 import com.techchallenge4.ms_cliente.controller.dto.response.ClienteResponse;
 import com.techchallenge4.ms_cliente.domain.service.cliente.ClienteService;
+import com.techchallenge4.ms_cliente.infra.security.utils.token.TokenUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-import static com.techchallenge4.ms_cliente.mock.ClienteDados.getClienteRequest;
-import static com.techchallenge4.ms_cliente.mock.ClienteDados.getClienteResponse;
+import static com.techchallenge4.ms_cliente.mock.ClienteDados.*;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
+@SpringBootTest
+@AutoConfigureMockMvc
 @ActiveProfiles("test")
-@WebMvcTest(ClienteController.class)
-class ClienteControllerIT {
+@WithMockUser(username = "user", roles = {"USER"})
+public class ClienteControllerIT {
 
-    private ClienteRequest clienteRequest;
-    private ClienteResponse clienteResponse;
+    private ClienteRequest  clienteRequest= getClienteRequest();
+    private ClienteResponse clienteResponse = getClienteResponse();
 
     @Autowired
     private MockMvc mockMvc;
@@ -40,19 +44,17 @@ class ClienteControllerIT {
     @MockBean
     private ClienteService clienteService;
 
+    @MockBean
+    private TokenUtils tokenUtils;
+
     @Autowired
     private ObjectMapper objectMapper;
-
-    @BeforeEach
-    void setUp() {
-        clienteRequest = getClienteRequest();
-        clienteResponse = getClienteResponse();
-    }
 
     @Test
     void deveCriarClienteERetornarCreated() throws Exception {
 
         when(clienteService.criar(any(ClienteRequest.class))).thenReturn(clienteResponse);
+        when(tokenUtils.getSubject(anyString())).thenReturn("user");
 
         mockMvc.perform(MockMvcRequestBuilders.post("/clientes")
                         .contentType(MediaType.APPLICATION_JSON)
