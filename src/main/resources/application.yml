@@ -1,10 +1,10 @@
 spring:
   application:
-    name: ms-cliente.app
+    name: ms-cliente
   profiles:
     active: "local"
   datasource:
-    url: jdbc:mysql://${MYSQL_URL}/mysql-ms
+    url: jdbc:mysql://${MYSQL_URL}/ms-cliente
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
