@@ -1,5 +1,6 @@
 package com.techchallenge4.ms_cliente.model.dto.request;
 
+import com.techchallenge4.ms_cliente.controller.dto.request.EnderecoRequest;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;

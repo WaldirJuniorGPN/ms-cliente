@@ -1,9 +1,9 @@
 package com.techchallenge4.ms_cliente.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.techchallenge4.ms_cliente.model.dto.request.ClienteRequest;
-import com.techchallenge4.ms_cliente.model.dto.response.ClienteResponse;
-import com.techchallenge4.ms_cliente.service.ClienteService;
+import com.techchallenge4.ms_cliente.controller.dto.request.ClienteRequest;
+import com.techchallenge4.ms_cliente.controller.dto.response.ClienteResponse;
+import com.techchallenge4.ms_cliente.domain.service.cliente.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

@@ -1,7 +1,7 @@
 package com.techchallenge4.ms_cliente.steps;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.techchallenge4.ms_cliente.model.dto.response.ClienteResponse;
+import com.techchallenge4.ms_cliente.controller.dto.response.ClienteResponse;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
