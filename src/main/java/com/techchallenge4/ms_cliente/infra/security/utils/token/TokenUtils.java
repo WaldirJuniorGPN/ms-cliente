@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.techchallenge4.ms_cliente.domain.model.usuario.Usuario;
+import com.techchallenge4.ms_cliente.domain.model.cliente.Cliente;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -27,12 +27,12 @@ public class TokenUtils {
     @Value("${api.security.token.expiration-hours}")
     private Long expirationHours;
 
-    public String gerarToken(Usuario usuario) {
+    public String gerarToken(Cliente cliente) {
         try {
             var algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer(ISSUER)
-                    .withSubject(usuario.getLogin())
+                    .withSubject(cliente.getEmail())
                     .withExpiresAt(dataExpiracao())
                     .sign(algorithm);
         } catch (JWTCreationException exception) {

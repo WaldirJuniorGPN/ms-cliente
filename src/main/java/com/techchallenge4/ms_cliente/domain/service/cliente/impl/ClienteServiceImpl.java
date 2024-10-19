@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,12 +22,14 @@ public class ClienteServiceImpl implements ClienteService {
 
     private final ClienteRepository repository;
     private final ClienteAdapter adapter;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
     public ClienteResponse criar(ClienteRequest request) {
         log.info("Iniciando criação de um novo cliente: {}", request.getNome());
         var cliente = adapter.clienteRequestToCliente(request);
+        cliente.setSenha(encriptaSenha(request.getSenha()));
         repository.save(cliente);
         log.info("Cliente criado com sucesso: {}", cliente.getId());
 
@@ -78,5 +81,9 @@ public class ClienteServiceImpl implements ClienteService {
                     log.error("Cliente com ID {} não encontrado ou está inativado", id);
                     return new EntityNotFoundException("Cliente não encontrado");
                 });
+    }
+
+    private String encriptaSenha(String senha) {
+        return passwordEncoder.encode(senha);
     }
 }
