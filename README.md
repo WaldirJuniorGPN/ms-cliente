@@ -107,7 +107,7 @@ ENTRYPOINT ["java","-jar","/ms-cliente/ms-cliente.jar"]
 
 O projeto implementa autenticação JWT utilizando o **Spring Security**. As seguintes rotas são protegidas e exigem um token JWT válido para acessar:
 
-- **Rotas protegidas**: Todas as rotas, exceto `/usuarios`, `/login`, e as rotas relacionadas ao Swagger (`/swagger-ui/**`, `/v3/api-docs/**`).
+- **Rotas protegidas**: Todas as rotas, exceto `/clientes`, `/login`, e as rotas relacionadas ao Swagger (`/swagger-ui/**`, `/v3/api-docs/**`).
 
 Os tokens JWT são gerados e validados pela aplicação, garantindo que apenas usuários autenticados possam acessar as rotas protegidas.
 
