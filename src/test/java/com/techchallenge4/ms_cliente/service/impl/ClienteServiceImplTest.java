@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +38,9 @@ class ClienteServiceImplTest {
     @Mock
     private ClienteAdapter adapter;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private ClienteServiceImpl service;
 
@@ -57,7 +61,10 @@ class ClienteServiceImplTest {
     @Test
     void criar_deveRetornarClienteResponse_quandoSucesso() {
 
+        String senhaEncriptada = "senhaEncriptada";
+
         when(adapter.clienteRequestToCliente(request)).thenReturn(cliente);
+        when(passwordEncoder.encode(request.getSenha())).thenReturn(senhaEncriptada);
         when(repository.save(cliente)).thenReturn(cliente);
         when(adapter.clienteToClienteResponse(cliente)).thenReturn(response);
 
@@ -66,7 +73,9 @@ class ClienteServiceImplTest {
         assertNotNull(resultado);
         assertEquals(response.getId(), resultado.getId());
         assertEquals(response.getNome(), resultado.getNome());
+        assertEquals(senhaEncriptada, cliente.getSenha());
         verify(repository, times(1)).save(cliente);
+        verify(passwordEncoder, times(1)).encode(request.getSenha());
     }
 
     @Test

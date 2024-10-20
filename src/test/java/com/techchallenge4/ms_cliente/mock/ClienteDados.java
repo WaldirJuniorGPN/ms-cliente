@@ -18,6 +18,7 @@ public interface ClienteDados {
     String CIDADE = "Brasília";
     String UF = "DF";
     String CEP = "70000-000";
+    String SENHA = "Senha123";
 
     static Cliente getCliente() {
         var cliente = new Cliente();
@@ -25,6 +26,7 @@ public interface ClienteDados {
         cliente.setNome(NOME);
         cliente.setEmail(EMAIL);
         cliente.setTelefone(TELEFONE);
+        cliente.setSenha(SENHA);
         cliente.setEndereco(getEndereco());
 
         return cliente;
@@ -35,6 +37,7 @@ public interface ClienteDados {
         clienteRequest.setNome(NOME);
         clienteRequest.setEmail(EMAIL);
         clienteRequest.setTelefone(TELEFONE);
+        clienteRequest.setSenha(SENHA);
         clienteRequest.setEndereco(getEnderecoRequest());
 
         return clienteRequest;
@@ -46,6 +49,7 @@ public interface ClienteDados {
         clienteResponse.setNome(NOME);
         clienteResponse.setEmail(EMAIL);
         clienteResponse.setTelefone(TELEFONE);
+        clienteResponse.setSenha(SENHA);
         clienteResponse.setEndereco(getEnderecoResponse());
 
         return clienteResponse;
