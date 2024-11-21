@@ -9,10 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/login")
@@ -30,4 +28,13 @@ public class AutenticacaoController {
 
         return ResponseEntity.ok(new TokenResponse(tokenJWT));
     }
+
+    @GetMapping
+    public ResponseEntity<String> validarLogin(){
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        var usuario = (Cliente) authentication.getPrincipal();
+        System.out.println(usuario.getEmail());
+        return ResponseEntity.ok(usuario.getEmail());
+    }
+
 }
