@@ -1,5 +1,6 @@
 package com.techchallenge4.ms_cliente.controller.dto.response;
 
+import com.techchallenge4.ms_cliente.domain.model.enums.UfEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,8 @@ public class EnderecoResponse {
     private String complemento;
     private String bairro;
     private String cidade;
-    private String uf;
+    private UfEnum uf;
     private String cep;
+    private String latitude;
+    private String longitude;
 }

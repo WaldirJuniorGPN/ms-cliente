@@ -34,3 +34,4 @@ build/
 
 ### Data ###
 /mysql-data
+/data

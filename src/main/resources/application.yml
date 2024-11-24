@@ -4,21 +4,20 @@ spring:
   profiles:
     active: "local"
   datasource:
-    url: jdbc:mysql://${MYSQL_URL}/ms-cliente
-    username: ${MYSQL_USERNAME}
-    password: ${MYSQL_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://${POSTGRES_URL}/ms-cliente
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
 
   jpa:
     hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
       ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: false
 
 api:
   security:
     token:
       expiration-hours: 2
       secret: ${JWT_SECRET}
+server:
+  port: 8080

@@ -42,6 +42,8 @@ public class ClienteServiceImpl implements ClienteService {
         log.info("Iniciando atualização do cliente com ID: {}", id);
         var cliente = buscarNaBase(id);
         cliente = adapter.clienteRequestToCliente(request);
+        cliente.setId(id);
+        cliente.setSenha(encriptaSenha(request.getSenha()));
         repository.save(cliente);
         log.info("Cliente atualizado com sucesso: {}", cliente.getId());
 

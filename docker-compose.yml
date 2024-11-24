@@ -6,23 +6,25 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - mysql
+      - postgres
     ports:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: DEFAULT
-      MYSQL_URL: mysql:3306
-      MYSQL_USERNAME: root
-      MYSQL_PASSWORD: root
+      POSTGRES_URL: postgresDb:5432
+      POSTGRES_USERNAME: user
+      POSTGRES_PASSWORD: admin
       JWT_SECRET: 12345678
 
-  mysql:
-    image: mysql:latest
-    container_name: mysql-ms
+  postgres:
+    image: postgres:latest
+    container_name: postgresDb
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ms-cliente
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ms-cliente
+      TZ: "America/Fortaleza"
     ports:
-      - "3307:3306"
+      - "5432:5432"
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./data:/var/lib/postgresql/data
