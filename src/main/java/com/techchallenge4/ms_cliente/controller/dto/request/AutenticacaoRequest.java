@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 public record AutenticacaoRequest(
 
         @NotBlank
-        String login,
+        String email,
 
         @NotBlank
         String senha) {

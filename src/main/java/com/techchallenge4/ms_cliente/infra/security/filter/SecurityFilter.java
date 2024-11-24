@@ -1,6 +1,6 @@
 package com.techchallenge4.ms_cliente.infra.security.filter;
 
-import com.techchallenge4.ms_cliente.infra.repository.UsuarioRepository;
+import com.techchallenge4.ms_cliente.infra.repository.ClienteRepository;
 import com.techchallenge4.ms_cliente.infra.security.utils.token.TokenUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -15,14 +15,14 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-import static com.techchallenge4.ms_cliente.domain.exception.Constantes.*;
+import static com.techchallenge4.ms_cliente.domain.exception.Constantes.USER_NOT_FOUND;
 
 @Component
 @RequiredArgsConstructor
 public class SecurityFilter extends OncePerRequestFilter {
 
     private final TokenUtils tokenUtils;
-    private final UsuarioRepository repository;
+    private final ClienteRepository repository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -37,7 +37,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     private void autenticarUsuario(String tokenJWT) {
         var subject = tokenUtils.getSubject(tokenJWT);
-        var usuario = repository.findByLoginAndAtivoTrue(subject)
+        var usuario = repository.findByEmailAndAtivoTrue(subject)
                 .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND));
 
         var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());

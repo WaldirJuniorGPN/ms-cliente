@@ -14,29 +14,29 @@ public class EnderecoRequest {
 
     @NotBlank(message = "O logradouro não pode estar em branco ou nulo")
     @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ0-9'\\-,. ]+$", message = "O logradouro contém caracteres inválidos")
-    @Schema(description = "Logradouro do endereço", example = "Rua das Flores")
+    @Schema(description = "Logradouro do endereço", example = "Rua dos Ganchos")
     private String logradouro;
 
     @Pattern(regexp = "^[0-9A-Za-z]+$", message = "O número contém caracteres inválidos")
     @Schema(description = "Número do endereço", example = "123")
     private String numero;
 
-    @Schema(description = "Complemento do endereço", example = "Apartamento 201")
+    @Schema(description = "Complemento do endereço", example = "Porão Fétido")
     private String complemento;
 
     @NotBlank(message = "O bairro não pode estar em branco ou nulo")
     @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ'\\-,. ]+$", message = "O bairro contém caracteres inválidos")
-    @Schema(description = "Bairro do endereço", example = "Centro")
+    @Schema(description = "Bairro do endereço", example = "Beco dos Carniceiros")
     private String bairro;
 
     @NotBlank(message = "A cidade não pode estar em branco ou nulo")
     @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ'\\- ]+$", message = "A cidade contém caracteres inválidos")
-    @Schema(description = "Cidade do endereço", example = "Brasília")
+    @Schema(description = "Cidade do endereço", example = "Rotten Town")
     private String cidade;
 
     @NotBlank(message = "A UF não pode estar em branco ou nulo")
     @Pattern(regexp = "^[A-Z]{2}$", message = "A UF deve ser composta por duas letras maiúsculas")
-    @Schema(description = "Unidade Federativa (UF) do endereço", example = "DF")
+    @Schema(description = "Unidade Federativa (UF) do endereço", example = "RT")
     private String uf;
 
     @NotBlank(message = "O CEP não pode estar em branco ou nulo")
