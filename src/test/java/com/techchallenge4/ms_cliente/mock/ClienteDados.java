@@ -1,11 +1,14 @@
 package com.techchallenge4.ms_cliente.mock;
 
-import com.techchallenge4.ms_cliente.domain.model.cliente.Cliente;
-import com.techchallenge4.ms_cliente.domain.model.cliente.Endereco;
 import com.techchallenge4.ms_cliente.controller.dto.request.ClienteRequest;
 import com.techchallenge4.ms_cliente.controller.dto.request.EnderecoRequest;
 import com.techchallenge4.ms_cliente.controller.dto.response.ClienteResponse;
 import com.techchallenge4.ms_cliente.controller.dto.response.EnderecoResponse;
+import com.techchallenge4.ms_cliente.domain.model.cliente.Cliente;
+import com.techchallenge4.ms_cliente.domain.model.cliente.Endereco;
+import com.techchallenge4.ms_cliente.domain.model.enums.UfEnum;
+
+import static com.techchallenge4.ms_cliente.domain.model.enums.UfEnum.DF;
 
 public interface ClienteDados {
 
@@ -16,9 +19,11 @@ public interface ClienteDados {
     String LOGRADOURO = "Rua das Flores";
     String BAIRRO = "Elefante Branco";
     String CIDADE = "Brasília";
-    String UF = "DF";
+    UfEnum UF = DF;
     String CEP = "70000-000";
     String SENHA = "Senha123";
+    String LATITUDE = "-23.5505199";
+    String LONGITUDE = "-46.6333094";
 
     static Cliente getCliente() {
         var cliente = new Cliente();
@@ -56,14 +61,14 @@ public interface ClienteDados {
     }
 
     private static Endereco getEndereco() {
-        return new Endereco(LOGRADOURO, null, null, BAIRRO, CIDADE, UF, CEP);
+        return new Endereco(LOGRADOURO, null, null, BAIRRO, CIDADE, UF, CEP, LATITUDE, LONGITUDE);
     }
 
     private static EnderecoResponse getEnderecoResponse() {
-        return new EnderecoResponse(LOGRADOURO, null, null, BAIRRO, CIDADE, UF, CEP);
+        return new EnderecoResponse(LOGRADOURO, null, null, BAIRRO, CIDADE, UF, CEP, LATITUDE, LONGITUDE);
     }
 
     static EnderecoRequest getEnderecoRequest() {
-        return new EnderecoRequest(LOGRADOURO, null, null, BAIRRO, CIDADE, UF, CEP);
+        return new EnderecoRequest(LOGRADOURO, null, null, BAIRRO, CIDADE, UF, CEP, LATITUDE, LONGITUDE);
     }
 }

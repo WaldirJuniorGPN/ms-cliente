@@ -1,5 +1,6 @@
 package com.techchallenge4.ms_cliente.controller.dto.request;
 
+import com.techchallenge4.ms_cliente.domain.model.enums.UfEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -34,13 +35,21 @@ public class EnderecoRequest {
     @Schema(description = "Cidade do endereço", example = "Rotten Town")
     private String cidade;
 
-    @NotBlank(message = "A UF não pode estar em branco ou nulo")
-    @Pattern(regexp = "^[A-Z]{2}$", message = "A UF deve ser composta por duas letras maiúsculas")
-    @Schema(description = "Unidade Federativa (UF) do endereço", example = "RT")
-    private String uf;
+    @Schema(description = "Unidade Federativa (UF) do endereço", example = "PE")
+    private UfEnum uf;
 
     @NotBlank(message = "O CEP não pode estar em branco ou nulo")
     @Pattern(regexp = "^[0-9]{5}-?[0-9]{3}$", message = "O CEP precisa estar no formato 99999-999 ou 99999999")
     @Schema(description = "CEP do endereço", example = "70000-000")
     private String cep;
+
+    @NotBlank(message = "A latitude não pode estar em branco ou nulo")
+    @Pattern(regexp = "^-?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?)$", message = "A latitude precisa estar no formato -90.0 até 90.0")
+    @Schema(description = "Latitude do endereço", example = "-23.5505199")
+    private String latitude;
+
+    @NotBlank(message = "A longitude não pode estar em branco ou nulo")
+    @Pattern(regexp = "^-?((1?[0-7]?\\d(\\.\\d+)?)|180(\\.0+)?)$", message = "A longitude precisa estar no formato -180.0 até 180.0")
+    @Schema(description = "Longitude do endereço", example = "-46.6333094")
+    private String longitude;
 }

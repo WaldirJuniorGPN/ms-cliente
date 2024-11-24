@@ -1,19 +1,19 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3307/ms-cliente
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://localhost:5432/ms-cliente
+    username: user
+    password: admin
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    open-in-view: false
 
 logging:
   level:
-    root: WARN
     org.springframework.web: INFO
+    br.com.cliente: DEBUG
 
 api:
   security:

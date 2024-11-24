@@ -68,14 +68,6 @@ class EnderecoRequestTest {
     }
 
     @Test
-    void deveLancarViolacaoQuandoUFForInvalida() {
-        request.setUf("zz");
-        var violations = validator.validate(request);
-
-        assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("A UF deve ser composta por duas letras maiúsculas")));
-    }
-
-    @Test
     void deveLancarViolacaoQuandoCEPForInvalido() {
         request.setCep("123456");
         var violations = validator.validate(request);
